@@ -16,7 +16,7 @@ public class FindNthNode {
 
 	public static <T> T findNthNodeFromLastEfficiently(SinglyNode<T> head, int n) throws ListException {
 		if (n < 0)
-			throw new ListException("position of a list can never be zero.");
+			throw new ListException("position of a list can never be negative.");
 		SinglyNode<T> fastPointer = head;
 		SinglyNode<T> slowPointer = head;
 		if (n > 0) {
@@ -35,5 +35,16 @@ public class FindNthNode {
 
 		return slowPointer.getData();
 	}
+	
+	public static void main(String[] args) throws ListException {
+		SinglyNode<Integer> head = new SinglyNode<>(23);
+		head.setNext(new SinglyNode<Integer>(34, new SinglyNode<Integer>(45, new SinglyNode<Integer>(56))));
+		
+		System.out.println(FindNthNode.findNthNodeFromLastEfficiently(head, 0));
+		System.out.println(FindNthNode.findNthNodeFromLastEfficiently(head, 1));
+		System.out.println(FindNthNode.findNthNodeFromLastEfficiently(head, 2));
+		System.out.println(FindNthNode.findNthNodeFromLastEfficiently(head, 3));
+		System.out.println(FindNthNode.findNthNodeFromLastEfficiently(head, 4));
+	}	
 
 }
