@@ -35,5 +35,18 @@ public class SinglyNode<T> {
 	public void setNext(SinglyNode<T> next) {
 		this.next = next;
 	}
+
+	@Override
+	public String toString() {
+		return "SinglyNode [data=" + data + "]";
+	}
 	
+	public void displayListIfThisIsHead() {
+		SinglyNode<T> currentNode = this;
+		while(currentNode != null) {
+			System.out.print(currentNode.getData() + ", ");
+			currentNode = currentNode.getNext();
+		}
+		System.out.println();
+	}
 }
