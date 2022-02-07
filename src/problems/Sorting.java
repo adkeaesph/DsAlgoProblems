@@ -60,35 +60,32 @@ public class Sorting {
 		if(head2 == null) 
 			return head;
 		
-		SinglyNode<Integer> head3 = null, curr = head, curr2 = head2, curr3 = head3;
-		
-		while(curr != null && curr2 != null) {
-			if(curr.getData() <= curr2.getData()) {
-				if(head3 == null) {
-					head3 = curr;
-					curr3 = head3;
-				} else {
-					curr3.setNext(curr);
-					curr3 = curr3.getNext();
-				}
-				curr = curr.getNext();
-					
-			} else {
-				if(head3 == null) {
-					head3 = curr2;
-					curr3 = head3;
-				} else {
-					curr3.setNext(curr2);
-					curr3 = curr3.getNext();
-				}
-				curr2 = curr2.getNext();
-			}
+		SinglyNode<Integer> head3 = null, curr = null;
+		if(head.getData() <= head2.getData()) {
+			head3 = head;
+			curr = head3;
+			head = head.getNext();
+		} else {
+			head3 = head2;
+			curr = head3;
+			head2 = head2.getNext();
 		}
 		
-		if(curr != null)
-			curr3.setNext(curr);
-		if(curr2 != null)
-			curr3.setNext(curr2);
+		while(head != null && head2 != null) {
+			if(head.getData() <= head2.getData()) {	
+				curr.setNext(head);
+				head = head.getNext();
+			} else {
+				curr.setNext(head2);
+				head2 = head2.getNext();
+			}
+			curr = curr.getNext();
+		}
+		
+		if(head != null)
+			curr.setNext(head);
+		if(head2 != null)
+			curr.setNext(head2);
 	
 		return head3;
 	}
@@ -125,6 +122,9 @@ public class Sorting {
 		
 		head = reverseList(head);
 		ListUtil.displayList(head);
+		
+		head2 = reverseList(head2);
+		ListUtil.displayList(head2);
 	}
 
 }
