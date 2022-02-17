@@ -90,16 +90,31 @@ public class Sorting {
 		return head3;
 	}
 	
-//	public static <T> SinglyNode<T> reverseNnodes(SinglyNode<T> head, int n) {
-//		SinglyNode<T> curr = head, curr2;
-//		while(curr!=null) {
-//			curr2 = curr;
-//			for(int i=0;i<n-1;i++) {
-//				curr2 = curr2.getNext();
-//			}
-//			
-//		}
-//	}
+	public static <T> SinglyNode<T> reverseNnodes(SinglyNode<T> head, int n) {
+		SinglyNode<T> curr = head, curr2;
+		SinglyNode<T> prevNode = head;
+		SinglyNode<T> nextNode = null;
+		while(curr!=null) {
+			curr2 = curr;
+			for(int i=0;i<n-1;i++) {
+				if(curr2!=null)
+					curr2 = curr2.getNext();
+				else
+					break;
+			}
+			
+			nextNode = curr2.getNext();
+			SinglyNode<T> tailOfReversedList = curr;
+			SinglyNode<T> headOfReversedList = reverseList(curr);
+			if(prevNode == head)
+				head = headOfReversedList;
+			else
+				prevNode.setNext(headOfReversedList);
+			tailOfReversedList.setNext(nextNode);
+			curr = nextNode;
+		}
+		return head;
+	}
 
 	public static void main(String[] args) {
 		SinglyNode<Integer> head = new SinglyNode<>();
@@ -114,17 +129,14 @@ public class Sorting {
 		head2 = insertNodeInASortedList(head2, 10);
 		head2 = insertNodeInASortedList(head2, 30);
 		head2 = insertNodeInASortedList(head2, 49);
-		head2 = insertNodeInASortedList(head2, 90);
+//		head2 = insertNodeInASortedList(head2, 90);
 		ListUtil.displayList(head2);
 		
 		SinglyNode<Integer> head3 = mergeTwoSortedLists(head, head2);
 		ListUtil.displayList(head3);
 		
-		head = reverseList(head);
-		ListUtil.displayList(head);
-		
-		head2 = reverseList(head2);
-		ListUtil.displayList(head2);
+		SinglyNode<Integer> head4 = reverseNnodes(head3, 2); 
+		ListUtil.displayList(head4);
 	}
 
 }
