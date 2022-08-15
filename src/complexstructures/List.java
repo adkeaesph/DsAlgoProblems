@@ -1,4 +1,4 @@
-package corestructures;
+package complexstructures;
 import customexceptions.ListException;
 
 public interface List<T> {

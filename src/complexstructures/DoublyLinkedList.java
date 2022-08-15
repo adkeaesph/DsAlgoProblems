@@ -1,5 +1,6 @@
-package corestructures;
+package complexstructures;
 
+import corestructures.DoublyNode;
 import customexceptions.ListException;
 
 public class DoublyLinkedList<T> implements List<T> {

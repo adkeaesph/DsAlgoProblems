@@ -1,6 +1,6 @@
 package problems;
 
-import corestructures.List;
+import complexstructures.List;
 import corestructures.SinglyNode;
 import customexceptions.ListException;
 

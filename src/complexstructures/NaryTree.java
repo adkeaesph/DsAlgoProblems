@@ -1,4 +1,6 @@
-package corestructures;
+package complexstructures;
+
+import corestructures.NaryTreeNode;
 
 public class NaryTree<T> implements Tree<T> {
 	private NaryTreeNode<T> root;

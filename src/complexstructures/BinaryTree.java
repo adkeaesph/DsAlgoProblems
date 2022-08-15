@@ -1,4 +1,6 @@
-package corestructures;
+package complexstructures;
+
+import corestructures.BinaryTreeNode;
 
 public class BinaryTree<T> implements Tree<T> {
 	private BinaryTreeNode<T> root;

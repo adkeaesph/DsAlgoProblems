@@ -1,8 +1,8 @@
 
-import corestructures.CircularLinkedList;
-import corestructures.DoublyLinkedList;
-import corestructures.List;
-import corestructures.SinglyLinkedList;
+import complexstructures.CircularLinkedList;
+import complexstructures.DoublyLinkedList;
+import complexstructures.List;
+import complexstructures.SinglyLinkedList;
 import customexceptions.ListException;
 
 public class DemoDriver {

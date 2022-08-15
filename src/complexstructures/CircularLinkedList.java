@@ -1,40 +1,35 @@
-package corestructures;
+package complexstructures;
 
+import corestructures.SinglyNode;
 import customexceptions.ListException;
 
-public class SinglyLinkedList<T> implements List<T> {
+public class CircularLinkedList<T> implements List<T> {
 
 	private SinglyNode<T> head;
-	private SinglyNode<T> tail;
+	private SinglyNode<T> preHead; // is null for singleton circular linked list
 	private int size;
 
-	public SinglyNode<T> getHead() {
-		return head;
-	}
-	
-	public void setHead(SinglyNode<T> head) {
-		this.head = head;
-	}
-
-	public SinglyNode<T> getTail() {
-		return tail;
-	}
-	
-	public SinglyLinkedList() {
+	public CircularLinkedList() {
 		head = null;
-		tail = head;
+		preHead = null;
 		size = 0;
 	}
 
 	@Override
 	public void add(T data) {
-		if (size == 0) {
+		if (head == null) {
 			head = new SinglyNode<>(data);
-			tail = head;
+			head.setNext(head);
 		} else {
-			SinglyNode<T> newNode = new SinglyNode<>(data);
-			tail.setNext(newNode);
-			tail = tail.getNext();
+			if (size == 1) {
+				preHead = new SinglyNode<>(data);
+				head.setNext(preHead);
+				preHead.setNext(head);
+			} else {
+				preHead.setNext(new SinglyNode<>(data));
+				preHead = preHead.getNext();
+				preHead.setNext(head);
+			}
 		}
 		size++;
 	}
@@ -45,16 +40,20 @@ public class SinglyLinkedList<T> implements List<T> {
 			throw new ListException("Position can be 0 to n where n is the size of the list");
 
 		if (position == 0) {
-			if (getSize() == 0)
-				add(data);
-			else {
+			if (getSize() == 0) {
+				head = new SinglyNode<>(data);
+				head.setNext(head);
+			} else {
 				SinglyNode<T> newNode = new SinglyNode<>(data, head);
 				head = newNode;
-				size++;
+				if (getSize() == 1)
+					preHead = head.getNext();
+				preHead.setNext(head);
 			}
-		} else if (position == getSize())
+			size++;
+		} else if (position == getSize()) {
 			add(data);
-		else {
+		} else {
 			SinglyNode<T> newNode = new SinglyNode<>(data);
 			SinglyNode<T> currentNode = head;
 			int index = 0;
@@ -77,19 +76,25 @@ public class SinglyLinkedList<T> implements List<T> {
 			throw new ListException("List is empty.");
 
 		if (head.getData().equals(data)) {
-			if (size == 1) {
+			if (getSize() == 1)
 				head = null;
-				tail = head;
-			} else
+			else {
 				head = head.getNext();
+				if (getSize() == 2)
+					preHead = null;
+				else
+					preHead.setNext(head);
+			}
 			size--;
 		} else {
 			SinglyNode<T> currentNode = head;
 			while (currentNode != null && currentNode.getNext() != null) {
 				SinglyNode<T> nextNode = currentNode.getNext();
 				if (nextNode.getData().equals(data)) {
-					if (nextNode.equals(tail))
-						tail = currentNode;
+					if (nextNode.equals(preHead)) {
+						preHead = currentNode;
+						preHead.setNext(head);
+					}
 					currentNode.setNext(nextNode.getNext());
 					size--;
 					break;
@@ -97,6 +102,54 @@ public class SinglyLinkedList<T> implements List<T> {
 				currentNode = nextNode;
 			}
 		}
+	}
+
+	@Override
+	public void removeAllObjects(T data) throws ListException {
+		if (isEmpty())
+			throw new ListException("List is empty.");
+
+		while (head != null && head.getData().equals(data)) {
+			if (getSize() == 1)
+				head = null;
+			else {
+				head = head.getNext();
+				if (getSize() == 2)
+					preHead = null;
+				else
+					preHead.setNext(head);
+			}
+			size--;
+		}
+
+		SinglyNode<T> currentNode = head;
+		while (getSize() > 0) {
+			if(getSize() == 1) {
+				if(head.getData().equals(data)) {
+					head = null;
+					size--;
+				} else
+					break;
+				
+			} else if (getSize() == 2) {
+				if (preHead.getData().equals(data)) {
+					preHead = null;
+					head.setNext(head);
+					size--;
+				}
+			} else if (getSize() > 2) {
+
+				if (currentNode != null && currentNode.getNext() != null) {
+					SinglyNode<T> nextNode = currentNode.getNext();
+					if (nextNode.getData().equals(data)) {
+						currentNode.setNext(nextNode.getNext());
+						size--;
+					} else
+						currentNode = nextNode;
+				}
+			}
+		}
+
 	}
 
 	@Override
@@ -108,11 +161,15 @@ public class SinglyLinkedList<T> implements List<T> {
 			throw new ListException("Position can be 0 to n-1 where n is the size of the list");
 
 		if (position == 0) {
-			if (size == 1) {
+			if (getSize() == 1)
 				head = null;
-				tail = head;
-			} else
+			else {
 				head = head.getNext();
+				if (getSize() == 2)
+					preHead = null;
+				else
+					preHead.setNext(head);
+			}
 			size--;
 		} else {
 			SinglyNode<T> currentNode = head;
@@ -120,8 +177,10 @@ public class SinglyLinkedList<T> implements List<T> {
 			while (currentNode != null && currentNode.getNext() != null) {
 				SinglyNode<T> nextNode = currentNode.getNext();
 				if (index == position - 1) {
-					if (nextNode.equals(tail))
-						tail = currentNode;
+					if (nextNode.equals(preHead)) {
+						preHead = currentNode;
+						preHead.setNext(head);
+					}
 					currentNode.setNext(nextNode.getNext());
 					size--;
 					break;
@@ -133,40 +192,15 @@ public class SinglyLinkedList<T> implements List<T> {
 	}
 
 	@Override
-	public void removeAllObjects(T data) throws ListException {
-		if (isEmpty())
-			throw new ListException("List is empty.");
-		do {
-			if (head.getData().equals(data)) {
-				head = head.getNext();
-				size--;
-				if (head == null)
-					tail = head;
-			} else
-				break;
-		} while (head != null);
-
-		SinglyNode<T> currentNode = head;
-		while (currentNode != null && currentNode.getNext() != null) {
-			SinglyNode<T> nextNode = currentNode.getNext();
-			if (nextNode.getData().equals(data)) {
-				if (nextNode.equals(tail))
-					tail = currentNode;
-				currentNode.setNext(nextNode.getNext());
-				size--;
-			} else
-				currentNode = nextNode;
-		}
-	}
-
-	@Override
 	public T get(int position) throws ListException {
 		if (position >= getSize() || position < 0)
 			throw new ListException("Position can be 0 to n-1 where n is the size of the list");
 
 		T dataToBeReturned = null;
-		if (position == getSize() - 1)
-			return tail.getData();
+		if (position == 0)
+			return head.getData();
+		else if (position == getSize() - 1)
+			return preHead.getData();
 		else {
 			SinglyNode<T> currentNode = head;
 			int index = 0;
@@ -185,20 +219,17 @@ public class SinglyLinkedList<T> implements List<T> {
 	@Override
 	public int getPositionOf(T data) {
 		SinglyNode<T> currentNode = head;
-		int index = 0;
-		while (currentNode != null) {
-			if (currentNode.getData().equals(data)) {
+		for (int index = 0; index < getSize(); index++) {
+			if (currentNode.getData().equals(data))
 				return index;
-			}
 			currentNode = currentNode.getNext();
-			index++;
 		}
 		return -1;
 	}
 
 	@Override
 	public boolean isEmpty() {
-		return getSize() == 0;
+		return size == 0;
 	}
 
 	@Override
@@ -209,9 +240,24 @@ public class SinglyLinkedList<T> implements List<T> {
 	@Override
 	public String toString() {
 		String result = "";
+		if (size == 1)
+			result += head.getData();
+		else if (size > 1) {
+			SinglyNode<T> currentNode = head;
+			while (currentNode != preHead) {
+				result += currentNode.getData() + " ";
+				currentNode = currentNode.getNext();
+			}
+			result += preHead.getData();
+		}
+		return result;
+	}
+
+	public String displayRepeatedly(int n) {
+		String result = "";
 		SinglyNode<T> currentNode = head;
-		while (currentNode != null) {
-			result += (currentNode.getData() + " ");
+		for (int i = 0; i < n; i++) {
+			result += currentNode.getData() + " ";
 			currentNode = currentNode.getNext();
 		}
 		return result;

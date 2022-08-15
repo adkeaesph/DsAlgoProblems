@@ -1,4 +1,4 @@
-package problems;
+package ds_problems.lists;
 
 import java.util.HashSet;
 import java.util.Set;

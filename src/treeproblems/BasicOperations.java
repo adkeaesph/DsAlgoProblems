@@ -1,6 +1,6 @@
 package treeproblems;
 
-import corestructures.BinaryTree;
+import complexstructures.BinaryTree;
 
 public class BasicOperations {
 

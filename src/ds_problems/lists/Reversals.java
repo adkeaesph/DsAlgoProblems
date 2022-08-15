@@ -1,6 +1,6 @@
 package ds_problems.lists;
 
-import corestructures.SinglyLinkedList;
+import complexstructures.SinglyLinkedList;
 import corestructures.SinglyNode;
 import utils.ListUtil;
 

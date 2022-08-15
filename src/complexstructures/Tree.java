@@ -1,4 +1,4 @@
-package corestructures;
+package complexstructures;
 
 public interface Tree<T> {
 	
