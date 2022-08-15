@@ -1,7 +1,6 @@
 
 import corestructures.CircularLinkedList;
 import corestructures.DoublyLinkedList;
-import corestructures.DoublyNode;
 import corestructures.List;
 import corestructures.SinglyLinkedList;
 import customexceptions.ListException;
@@ -9,8 +8,8 @@ import customexceptions.ListException;
 public class DemoDriver {
 
 	public static void main(String[] args) throws ListException {
-//		singlyLinkedListTests();
-//		doublyLinkedListTests();
+		singlyLinkedListTests();
+		doublyLinkedListTests();
 		circularLinkedListTests();
 	}
 

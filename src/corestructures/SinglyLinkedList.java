@@ -11,6 +11,10 @@ public class SinglyLinkedList<T> implements List<T> {
 	public SinglyNode<T> getHead() {
 		return head;
 	}
+	
+	public void setHead(SinglyNode<T> head) {
+		this.head = head;
+	}
 
 	public SinglyNode<T> getTail() {
 		return tail;
@@ -212,4 +216,5 @@ public class SinglyLinkedList<T> implements List<T> {
 		}
 		return result;
 	}
+
 }
