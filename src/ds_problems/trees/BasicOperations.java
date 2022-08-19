@@ -1,4 +1,4 @@
-package treeproblems;
+package ds_problems.trees;
 
 import complexstructures.BinaryTree;
 
