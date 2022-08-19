@@ -4,8 +4,9 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class Fibonnacci {
-
+	// tc - time complexity, sc - space complexity
 	
+	// tc = O(n), sc = O(1)
 	private static long findNthFibonnaciNumberUsingIteration(int n) {
 		long first = 1;
 		if(n <= 2)
@@ -22,6 +23,7 @@ public class Fibonnacci {
 		return newNumber;
 	}
 	
+	// tc = O(2^n), sc = O(2^n)
 	private static long findNthFibonnaciNumberUsingRecursion(int n) {
 		if(n <= 2)
 			return 1;
@@ -29,6 +31,7 @@ public class Fibonnacci {
 		return findNthFibonnaciNumberUsingRecursion(n - 1) + findNthFibonnaciNumberUsingRecursion(n - 2); 
 	}
 	
+	// tc = O(n), sc = O(n)
 	private static long findNthFibonnaciNumberUsingMemoizedRecursion(int n) {
 		return fibonnnaciMemoisedHelper(n, new HashMap<Integer, Long>());
 	}
