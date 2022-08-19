@@ -8,6 +8,5 @@ public class ListException extends Exception {
 
 	public ListException(String message) {
 		super(message);
-		// TODO Auto-generated constructor stub
 	}
 }

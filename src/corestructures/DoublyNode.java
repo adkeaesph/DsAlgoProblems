@@ -6,6 +6,7 @@ public class DoublyNode<T> {
 	private DoublyNode<T> previous;
 	private DoublyNode<T> next;
 	
+	
 	public DoublyNode() {
 		data = null;
 		previous = null;

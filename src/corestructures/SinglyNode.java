@@ -1,7 +1,6 @@
 package corestructures;
 
 public class SinglyNode<T> {
-	
 	private T data;
 	private SinglyNode<T> next;
 	
