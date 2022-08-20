@@ -5,7 +5,6 @@ package ds_problems.stacks;
 import complexstructures.Stack;
 import complexstructures.StackUsingLinkedList;
 import customexceptions.StackException;
-import utils.ListUtil;
 
 public class SortStack {
 	
@@ -59,11 +58,11 @@ public class SortStack {
 		stack.push(2);
 		stack.display();
 		
-		Stack<Integer> descendingStack = sortStackWithHighestAtTop(stack);
-		descendingStack.display();
+		stack = sortStackWithHighestAtTop(stack);
+		stack.display();
 		
-		Stack<Integer> ascendingStack = sortStackWithLowestAtTop(descendingStack);
-		ascendingStack.display();
+		stack = sortStackWithLowestAtTop(stack);
+		stack.display();
 	}
 
 }
