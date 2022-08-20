@@ -1,6 +1,6 @@
 package problems;
 
-import complexstructures.MinMaxStack;
+import ds_problems.stacks.MinMaxStack;
 
 public class FindMinAndMaxOfStack {
 	

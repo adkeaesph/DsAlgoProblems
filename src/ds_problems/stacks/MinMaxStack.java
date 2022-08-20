@@ -1,4 +1,4 @@
-package complexstructures;
+package ds_problems.stacks;
 
 import java.util.Iterator;
 import java.util.Stack;
