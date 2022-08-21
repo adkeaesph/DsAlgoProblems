@@ -45,13 +45,17 @@ public class GridTraveller {
 		System.out.println(findNumberOfWays(1, 2));
 		System.out.println(findNumberOfWays(3, 4));
 		System.out.println(findNumberOfWays(5, 4));
-		System.out.println(findNumberOfWays(18, 18));
+//		System.out.println(findNumberOfWays(18, 18));
 		
 		System.out.println(findNumberOfWaysUsingMemoisation(1, 2));
 		System.out.println(findNumberOfWaysUsingMemoisation(2, 2));
 		System.out.println(findNumberOfWaysUsingMemoisation(3, 3));
 		System.out.println(findNumberOfWaysUsingMemoisation(3, 4));
+		System.out.println(findNumberOfWaysUsingMemoisation(4, 3));
+		System.out.println(findNumberOfWaysUsingMemoisation(2, 8));
+		System.out.println(findNumberOfWaysUsingMemoisation(8, 2));
 		System.out.println(findNumberOfWaysUsingMemoisation(5, 4));
+		System.out.println(findNumberOfWaysUsingMemoisation(4, 5));
 		System.out.println(findNumberOfWaysUsingMemoisation(50, 50));
 		
 		
