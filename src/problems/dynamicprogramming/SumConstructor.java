@@ -24,8 +24,6 @@ public class SumConstructor {
 		Map<String, Boolean> store = new HashMap<>();
 		return memoisedHelper(target, array, store);
 	}
-	
-	
 
 	private static boolean memoisedHelper(String target, String[] array, Map<String, Boolean> store) {
 		if(store.containsKey(target))
@@ -57,6 +55,10 @@ public class SumConstructor {
 		array = new String[]{"skate", "ate", "boa", "boar", "rd"};
 		System.out.println(isStringPossibleFromGivenArrayUsingStringAnyNumberOfTimes("skateboard", array));
 		
+		array = new String[]{"aa", "aba", "a"};
+		System.out.println(isStringPossibleFromGivenArrayUsingStringAnyNumberOfTimes("aaabaaaba", array));
+		
+		
 //		array = new String[]{"e", "ee", "eee", "eeee", "eeeee"};
 //		System.out.println(isStringPossibleFromGivenArrayUsingStringAnyNumberOfTimes(
 //				"eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeef", array));
@@ -69,10 +71,13 @@ public class SumConstructor {
 		array2 = new String[]{"skate", "ate", "boa", "boar", "rd"};
 		System.out.println(isStringPossibleFromGivenArrayUsingStringAnyNumberOfTimesUsingMemoisation("skateboard", array2));
 		
+		array2 = new String[]{"aa", "aba", "a"};
+		System.out.println(isStringPossibleFromGivenArrayUsingStringAnyNumberOfTimesUsingMemoisation("aaabaaaba", array2));
+		
 		array2 = new String[]{"e", "ee", "eee", "eeee", "eeeee"};
 		System.out.println(isStringPossibleFromGivenArrayUsingStringAnyNumberOfTimesUsingMemoisation(
 				"eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeef", array2));
-
+		
 	}
 
 }
