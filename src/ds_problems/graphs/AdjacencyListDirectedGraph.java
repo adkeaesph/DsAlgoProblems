@@ -4,11 +4,11 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-public class AdjacencyListGraph<T> {
+public class AdjacencyListDirectedGraph<T> {
 	private List<List<T>> adjacencyList;
 	private HashMap<T,Integer> verticesIndexMap;
 
-	public AdjacencyListGraph() {
+	public AdjacencyListDirectedGraph() {
 		// TODO Auto-generated constructor stub
 		adjacencyList = new ArrayList<>();
 		verticesIndexMap = new HashMap<>();
@@ -23,7 +23,6 @@ public class AdjacencyListGraph<T> {
 	
 	public void addEdge(int indexOfVertex1, int indexOfVertex2) {
 		adjacencyList.get(indexOfVertex1).add(adjacencyList.get(indexOfVertex2).get(0));
-		adjacencyList.get(indexOfVertex2).add(adjacencyList.get(indexOfVertex1).get(0));
 	}
 	
 	public List<List<T>> getAdjacencyList() {

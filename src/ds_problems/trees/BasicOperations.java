@@ -37,6 +37,14 @@ public class BasicOperations {
 		
 		bt.insertInLevelOrder(8);
 		BinaryTree.inorderTraversal(bt.getRoot());
+		System.out.println();
+		
+		BinaryTree.preorderTraversal(bt.getRoot());
+		System.out.println();
+		BinaryTree.postorderTraversal(bt.getRoot());
+		System.out.println();
+		
+		
 	}
 
 }

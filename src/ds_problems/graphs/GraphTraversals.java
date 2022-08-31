@@ -2,11 +2,12 @@ package ds_problems.graphs;
 
 import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.LinkedList;
 import java.util.List;
 
 public class GraphTraversals {
 
-	public static <T> List<T> dfsTraversal(AdjacencyListGraph<T> graph) {
+	private static <T> List<T> dfsTraversal(AdjacencyListDirectedGraph<T> graph) {
 		boolean[] visited = new boolean[graph.getNumberOfVertices()];
 		List<T> outputList = new ArrayList<>();
         // Call the recursive helper
@@ -15,10 +16,8 @@ public class GraphTraversals {
         DFSUtil(graph, 0, visited, outputList);
         return outputList;
 	}
-	
-	
 
-	private static <T> void DFSUtil(AdjacencyListGraph<T> graph, int indexOfCurrentVertex, boolean[] visited, List<T> outputList) {
+	private static <T> void DFSUtil(AdjacencyListDirectedGraph<T> graph, int indexOfCurrentVertex, boolean[] visited, List<T> outputList) {
 		visited[indexOfCurrentVertex] = true;
 		
 		List<List<T>> adjacencyList = graph.getAdjacencyList();
@@ -34,10 +33,34 @@ public class GraphTraversals {
 	}
 
 
+	private static <T> List<T> bfsTraversal(AdjacencyListDirectedGraph<T> graph, int startingNodeIndex) {
+		boolean[] visited = new boolean[graph.getNumberOfVertices()];
+		List<List<T>> adjacencyList = graph.getAdjacencyList();
+		
+		List<T> outputList = new ArrayList<>();
+		LinkedList<T> queue = new LinkedList<>();
+		T startNode = adjacencyList.get(startingNodeIndex).get(0);
+		queue.add(startNode);
+		visited[(int)graph.getIndexOfVertex(startNode)] = true;
+		while(!queue.isEmpty()) {
+			T currentNode = queue.pop();
+			outputList.add(currentNode);
+			int indexOfCurrentNode = graph.getIndexOfVertex(currentNode);
+			Iterator<T> i = adjacencyList.get(indexOfCurrentNode).listIterator();
+			while(i.hasNext()) {
+				T node = i.next();
+				if (!visited[(int)graph.getIndexOfVertex(node)]) {
+					visited[(int)graph.getIndexOfVertex(node)] = true;
+					queue.add(node);
+				}
+			}
+		}
+		return outputList;
+	}
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		AdjacencyListGraph<Integer> graph = new AdjacencyListGraph<>();
+		AdjacencyListDirectedGraph<Integer> graph = new AdjacencyListDirectedGraph<>();
 		graph.addVertex(0);
 		graph.addVertex(1);
 		graph.addVertex(2);
@@ -54,7 +77,26 @@ public class GraphTraversals {
 		}
 		System.out.println("\n---------------------------");
 		
-		AdjacencyListGraph<Character> graph2 = new AdjacencyListGraph<>();
+		graph = new AdjacencyListDirectedGraph<>();
+		graph.addVertex(0);
+		graph.addVertex(1);
+		graph.addVertex(2);
+		graph.addVertex(3);
+		graph.addEdge(0, 1);
+		graph.addEdge(0, 2);
+		graph.addEdge(1, 2);
+		graph.addEdge(2, 0);
+		graph.addEdge(2, 3);
+		graph.addEdge(3, 3);
+		graph.display();
+		
+		outputList = bfsTraversal(graph, 2);
+		for(Integer vertex : outputList) {
+			System.out.print(vertex + " ");
+		}
+		System.out.println("\n---------------------------");
+		
+		AdjacencyListDirectedGraph<Character> graph2 = new AdjacencyListDirectedGraph<>();
 		graph2.addVertex('a');
 		graph2.addVertex('b');
 		graph2.addVertex('c');

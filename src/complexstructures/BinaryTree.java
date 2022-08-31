@@ -1,5 +1,8 @@
 package complexstructures;
 
+import java.util.LinkedList;
+import java.util.Queue;
+
 import corestructures.BinaryTreeNode;
 
 public class BinaryTree<T> implements Tree<T> {
@@ -25,40 +28,57 @@ public class BinaryTree<T> implements Tree<T> {
 		this.root = root;
 	}
 	
-	public boolean insertInLevelOrder(T data) {
+	public void insertInLevelOrder(T data) {
+		BinaryTreeNode<T> newNode = new BinaryTreeNode<T>(data); 
 		if(root == null) {
-			root = new BinaryTreeNode<T>(data);
-			return true;
+			root = newNode;
+			return;
 		}
 		
-		if(root.getLeft() == null) {
-			root.setLeft(new BinaryTreeNode<T>(data));
-			return true;
-		} 
-		
-		if(root.getRight() == null) {
-			root.setRight(new BinaryTreeNode<T>(data));
-			return true;
-		} 
+		Queue<BinaryTreeNode<T>> queue = new LinkedList<>();
+		queue.add(root);
+		BinaryTreeNode<T> tempNode;
+		while(!queue.isEmpty()) {
+			tempNode = queue.peek();
+			queue.remove();
 			
-		boolean inserted = false;
-		BinaryTree<T> leftTree = new BinaryTree<>(root.getLeft());
-		inserted = leftTree.insertInLevelOrder(data);
-				
-		if(inserted)
-			return true;
-		
-		BinaryTree<T> rightTree = new BinaryTree<>(root.getRight());
-		return rightTree.insertInLevelOrder(data);
+			if(tempNode.getLeft() == null) {
+				tempNode.setLeft(newNode);
+				break;
+			} else 
+				queue.add(tempNode.getLeft());
+			
+			if(tempNode.getRight() == null) {
+				tempNode.setRight(newNode);
+				break;
+			} else 
+				queue.add(tempNode.getRight());
+		}
 	}
 	
 	public static<T> void inorderTraversal(BinaryTreeNode<T> root) {
-		if(root.getLeft() != null)
-			inorderTraversal(root.getLeft());
-		if(root != null)
-			System.out.print(root.getData() + " ");
-		if(root.getRight() != null)
-			inorderTraversal(root.getRight());
+		if(root == null)
+			return;
+		inorderTraversal(root.getLeft());
+		System.out.print(root.getData() + " ");
+		inorderTraversal(root.getRight());
 	}
 	
+	public static<T> void preorderTraversal(BinaryTreeNode<T> root) {
+		if(root == null)
+			return;
+		
+		System.out.print(root.getData() + " ");
+		preorderTraversal(root.getLeft());
+		preorderTraversal(root.getRight());
+	}
+
+	public static<T> void postorderTraversal(BinaryTreeNode<T> root) {
+		if(root == null)
+			return;
+		
+		postorderTraversal(root.getLeft());
+		postorderTraversal(root.getRight());
+		System.out.print(root.getData() + " ");
+	}
 }
