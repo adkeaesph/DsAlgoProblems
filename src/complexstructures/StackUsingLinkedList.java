@@ -8,6 +8,7 @@ public class StackUsingLinkedList<T> implements Stack<T> {
 
 	private SinglyNode<T> top;
 	private int size;
+	private String id;
 	
 	public StackUsingLinkedList() {
 		super();
@@ -65,6 +66,15 @@ public class StackUsingLinkedList<T> implements Stack<T> {
 	@Override
 	public boolean isEmpty() {
 		return size == 0;
+	}
+
+	public String getStackId() {
+		// TODO Auto-generated method stub
+		return id;
+	}
+	
+	public void setStackId(String id) {
+		this.id = id;
 	}
 
 }

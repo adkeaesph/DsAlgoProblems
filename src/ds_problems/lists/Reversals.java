@@ -6,7 +6,7 @@ import utils.ListUtil;
 
 public class Reversals {
 
-	public static SinglyLinkedList<Integer> reverseListWhenListIsGiven(SinglyLinkedList<Integer> originalList) {
+	private static SinglyLinkedList<Integer> reverseListWhenListIsGiven(SinglyLinkedList<Integer> originalList) {
 		SinglyNode<Integer> prev = null, temp = originalList.getHead();
 		SinglyNode<Integer> next;
 		
@@ -21,7 +21,7 @@ public class Reversals {
 		return originalList;
 	}
 	
-	public static SinglyNode<Integer> reverseListWhenListHeadIsGiven(SinglyNode<Integer> head) {
+	private static SinglyNode<Integer> reverseListWhenListHeadIsGiven(SinglyNode<Integer> head) {
 		SinglyNode<Integer> prev = null, temp = head;
 		SinglyNode<Integer> next;
 		
@@ -42,13 +42,15 @@ public class Reversals {
 		list.add(4);
 		list.add(6);
 		list.add(7);
+		ListUtil.displayList(list.getHead());
 		list = reverseListWhenListIsGiven(list);
 		ListUtil.displayList(list.getHead());
+		System.out.println("-------------------------------------------------");
 		
 		SinglyNode<Integer> head = new SinglyNode<Integer>(2, 
 				new SinglyNode<>(4, new SinglyNode<>(7, 
 						new SinglyNode<>(10))));
-		
+		ListUtil.displayList(head);
 		head = reverseListWhenListHeadIsGiven(head);
 		ListUtil.displayList(head);
 	}

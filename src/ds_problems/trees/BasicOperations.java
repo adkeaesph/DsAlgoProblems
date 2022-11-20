@@ -41,6 +41,7 @@ public class BasicOperations {
 		
 		BinaryTree.preorderTraversal(bt.getRoot());
 		System.out.println();
+		
 		BinaryTree.postorderTraversal(bt.getRoot());
 		System.out.println();
 		

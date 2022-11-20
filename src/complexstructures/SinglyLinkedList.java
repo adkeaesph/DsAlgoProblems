@@ -206,6 +206,19 @@ public class SinglyLinkedList<T> implements List<T> {
 	public int getSize() {
 		return size;
 	}
+	
+	public void reverse() {
+		SinglyNode<T> prev = null;
+		SinglyNode<T> temp = getHead();
+		SinglyNode<T> next;
+		while (temp != null) {
+			next = temp.getNext();
+			temp.setNext(prev);
+			prev = temp;
+			temp = next;
+		}
+		setHead(prev);
+	}
 
 	@Override
 	public String toString() {

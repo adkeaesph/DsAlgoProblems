@@ -21,7 +21,7 @@ public class LoopDetection {
 		return false;
 	}
 	
-	public static <T> boolean doesLoopExistsUsingPointers(SinglyNode<T> head) {
+	public static <T> boolean doesLoopExistsUsingReferences(SinglyNode<T> head) {
 		SinglyNode<T> slowNode = head;
 		SinglyNode<T> fastNode = head;
 		
@@ -91,7 +91,7 @@ public class LoopDetection {
 		head.setNext(new SinglyNode<Integer>(34, new SinglyNode<Integer>(45, new SinglyNode<Integer>(56))));
 		
 		System.out.println(LoopDetection.doesLoopExistsUsingSet(head));
-		System.out.println(LoopDetection.doesLoopExistsUsingPointers(head));
+		System.out.println(LoopDetection.doesLoopExistsUsingReferences(head));
 		System.out.println(LoopDetection.findStartNodeOfLoopIfLoopExists(head).getData());
 		System.out.println(LoopDetection.findLengthOfLoopIfLoopExists(head));
 		
@@ -102,7 +102,7 @@ public class LoopDetection {
 		
 		currentNode.setNext(new SinglyNode<Integer>(67, new SinglyNode<Integer>(78, head.getNext().getNext())));
 		System.out.println(LoopDetection.doesLoopExistsUsingSet(head));
-		System.out.println(LoopDetection.doesLoopExistsUsingPointers(head));
+		System.out.println(LoopDetection.doesLoopExistsUsingReferences(head));
 		System.out.println(LoopDetection.findStartNodeOfLoopIfLoopExists(head).getData());
 		System.out.println(LoopDetection.findLengthOfLoopIfLoopExists(head));
 		
@@ -110,7 +110,7 @@ public class LoopDetection {
 		SinglyNode<Integer> head2 = new SinglyNode<>(23);
 		head2.setNext( head2);
 		System.out.println(LoopDetection.doesLoopExistsUsingSet(head2));
-		System.out.println(LoopDetection.doesLoopExistsUsingPointers(head2));
+		System.out.println(LoopDetection.doesLoopExistsUsingReferences(head2));
 		System.out.println(LoopDetection.findStartNodeOfLoopIfLoopExists(head2).getData());
 		System.out.println(LoopDetection.findLengthOfLoopIfLoopExists(head2));
 		
