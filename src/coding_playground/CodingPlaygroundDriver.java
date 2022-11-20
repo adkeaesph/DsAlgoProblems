@@ -1,8 +1,6 @@
-package demo;
+package coding_playground;
 
-import java.util.Arrays;
-
-public class DemoDriver {
+public class CodingPlaygroundDriver {
 
 	private static void swap(int a, int b) {
 		a = a+b;

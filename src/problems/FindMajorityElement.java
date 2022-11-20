@@ -26,7 +26,10 @@ public class FindMajorityElement {
 			}
 		}
 		bufferedReader.close();
-		System.out.println(result[0]);
+		if(result[0].equals("$"))
+			System.out.println("No majority element.");
+		else
+			System.out.println(result[0]);
 	}
 	
 	
